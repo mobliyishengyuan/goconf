@@ -15,7 +15,7 @@ const (
 	stat_new_comment
 )
 
-const isDebug = true
+const isDebug = false
 
 var sectionReg,_ = regexp.Compile(`^([a-zA-Z0-9\.\_\@]+)\]\s*$`)
 var keyValueReg,_ = regexp.Compile(`^([a-zA-Z0-9\.\_]+)\s*=\s*(.+)\s*$`)

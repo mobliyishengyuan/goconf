@@ -2,24 +2,9 @@ package goconf
 
 import (
 	"testing"
-	"path/filepath"
-	"io/ioutil"
 	"fmt"
 )
 
-func TestParse(t *testing.T) {	
-	var config = new(Conf)
-	config.defaultSectionData = make(KvMap)
-	config.groupData = make(map[string]KvMap)
-	
-	confAbsPath,_ := filepath.Abs("simple.ini")
-	
-	content, _ := ioutil.ReadFile(confAbsPath)
-	
-	status,err := ParseByStatAndReg(config, content)
-	
-	fmt.Println(status, err)
-}
 
 func TestDefaultSection(t *testing.T) {
 	var content = []byte("key_0 = value_0\n[section_1]\n key_1 = value_1\n")

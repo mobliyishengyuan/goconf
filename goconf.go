@@ -25,7 +25,7 @@ type Conf struct {
 	groupData map[string]KvMap
 }
 
-func getNewConfig() *Conf {
+func GetNewConfig() *Conf {
 	var config = new(Conf)
 	config.defaultSectionData = make(KvMap)
 	config.groupData = make(map[string]KvMap)
@@ -59,10 +59,15 @@ func (config *Conf) Read(confPath string) (bool, error) {
 	return ParseByStatAndReg(config, content)
 }
 
-func (config *Conf) Get(section string, key string) string {
+func (config *Conf) Get(section string, key string) (string, bool) {
+	var status bool
+	var value string
+	
 	if section == DefaultSection {
-		return config.defaultSectionData[key]
+		value, status = config.defaultSectionData[key]
 	} else {
-		return config.groupData[section][key]
+		value, status = config.groupData[section][key]
 	}
+	
+	return value, status
 }
